@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import LeaderboardsList from '../components/leaderboard/LeaderboardsList';
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncGetLeaderboards } from '../states/slices/leaderboardsSlice';
+import { asyncGetLeaderboards } from '../states/leaderboards/action';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 function LeaderboardPage() {
