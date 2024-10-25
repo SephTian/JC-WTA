@@ -9,7 +9,7 @@ function Navbar() {
     <nav className="h-14 z-50 fixed top-0 right-0 left-0 w-full ">
       <div className="w-full h-full flex items-center px-4 py-1 bg-[#248277] text-white">
         <Link className="" to="/">
-          <h1 className="text-2xl font-bold">WorldThreadCenter</h1>
+          <h1 className="text-2xl font-bold">WorldThreadCenter App</h1>
         </Link>
         <div className="flex flex-grow justify-end items-center gap-4">
           {authUser && (
