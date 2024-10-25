@@ -1,5 +1,5 @@
 /** @type { import('@storybook/react').Preview } */
-import '../src/styles/index.css'; // Pastikan ini menunjuk ke file utama yang mengimpor Tailwind
+import '../src/styles/index.css';
 
 const preview = {
   parameters: {
