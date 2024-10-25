@@ -1,15 +1,15 @@
 /**
- * test scenario for authUserReducer
+ * test scenario for leaderboardsReducer
  *
- * - authUserReducers function
+ * - leaderboardsReducers function
  *  - should return the initial state when given by unknown action
- *  - should return authUser data, status with value "success", and error with value null when given by GET_LEADERBOARDS action
+ *  - should return leaderboards data, status with value "success", and error with value null when given by GET_LEADERBOARDS action
  */
 
 import { describe, it, expect } from 'vitest';
 import leaderboardsReducer from './reducer';
 
-describe('authUserReducers function', () => {
+describe('leaderboardsReducers function', () => {
   it('should return the initial state when given by unknown action', () => {
     // arrange
     const initialState = {
@@ -26,7 +26,7 @@ describe('authUserReducers function', () => {
     expect(nextState).toEqual(initialState);
   });
 
-  it('should return authUser data, status with value "success", and error with value null when given by GET_LEADERBOARDS action', () => {
+  it('should return leaderboards data, status with value "success", and error with value null when given by GET_LEADERBOARDS action', () => {
     // arrange
     const initialState = {
       leaderboards: [],
