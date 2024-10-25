@@ -9,6 +9,7 @@
  * - asyncRegisterUser thunk
  *  - should dispatch action correctly when register is success
  *  - should dispatch action and dispatch data with error message when register is failed
+ *  - should dispatch action and dispatch data with error message from API response when register is failed
  */
 
 import { describe, beforeEach, afterEach, it, vi, expect } from 'vitest';
@@ -152,7 +153,7 @@ describe('asyncRegisterUser thunk', () => {
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
   });
 
-  it('should dispatch action and dispatch data with error message when login is failed', async () => {
+  it('should dispatch action and dispatch data with error message when register is failed', async () => {
     // arrange
     // stub implementation
     api.register = () => Promise.reject(fakeErrorResponse);
@@ -169,7 +170,7 @@ describe('asyncRegisterUser thunk', () => {
     expect(dispatch).toHaveBeenCalledWith(hideLoading());
   });
 
-  it('should dispatch action and dispatch data with error message from api response when login is failed', async () => {
+  it('should dispatch action and dispatch data with error message from api response when register is failed', async () => {
     // arrange
     // stub implementation
     api.register = () => Promise.reject(fakeErrorWithResponseFromAPI);
