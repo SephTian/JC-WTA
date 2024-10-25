@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 function LoadingSpinner({ size }) {
-  let selectedSize;
+  let selectedSize = 'w-4 h-4';
   if (size === 'sm') {
     selectedSize = 'w-4 h-4';
   } else if (size === 'md') {
