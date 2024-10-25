@@ -29,7 +29,7 @@ function LoginInput({ handleLogin }) {
           className="border border-[#248277] rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
           value={email}
           type="email"
-          placeholder="Emailsss"
+          placeholder="Email"
           onChange={handleEmail}
         />
       </div>
