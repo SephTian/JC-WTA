@@ -76,7 +76,7 @@ function DetailThreadPage() {
           </div>
         </div>
       </article>
-      <CommentInput handleAddComment={handleAddComment} />
+      <CommentInput onAddComment={handleAddComment} />
       <CommentsList comments={detailThread.comments} handleToggleVoteComment={handleToggleVoteComment} />
     </section>
   );

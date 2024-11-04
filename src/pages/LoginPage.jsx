@@ -12,7 +12,7 @@ function LoginPage() {
   const [isReset, setIsReset] = useState(false);
 
   const handleLogin = async ({ email, password }) => {
-    dispatch(asyncLoginUser({ email, password }));
+    await dispatch(asyncLoginUser({ email, password }));
   };
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function LoginPage() {
         </h2>
       </header>
       <article className="flex justify-center items-center p-6 w-full">
-        <LoginInput handleLogin={handleLogin} />
+        <LoginInput onLogin={handleLogin} />
       </article>
     </section>
   );
