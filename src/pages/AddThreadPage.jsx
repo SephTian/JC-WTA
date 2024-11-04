@@ -31,7 +31,7 @@ function AddThreadPage() {
         </h2>
       </header>
       <article className="flex justify-center items-center w-full">
-        <ThreadInput handleCreateThread={handleCreateThread} />
+        <ThreadInput onCreateThread={handleCreateThread} />
       </article>
     </section>
   );

@@ -1,21 +1,50 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { useInput } from '../../hooks/useInput';
+//import { useInput } from '../../hooks/useInput';
 import LoadingSpinner from '../LoadingSpinner';
+import { useForm } from 'react-hook-form';
+import { useEffect, useMemo } from 'react';
 
-function ThreadInput({ handleCreateThread }) {
-  const [category, handleCategory] = useInput('');
-  const [title, handleTitle] = useInput('');
-  const [body, handleBody] = useInput('', { isHTML: true });
-  const { statusCreateThread, errorCreateThread } = useSelector((state) => state.threads);
+function ThreadInput({ onCreateThread }) {
+  const { errorCreateThread } = useSelector((state) => state.threads);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors, isSubmitting },
+  } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleCreateThread({ title, body, category });
+  const handleCreateThread = async (data) => {
+    const { title, body, category } = data;
+    await onCreateThread({ title, body, category });
   };
 
+  //untuk masukkin value content ke dalam
+  const handleBody = ({ target }) => {
+    setValue('body', target.innerHTML);
+  };
+
+  const validateCategory = {
+    required: 'Category is required',
+  };
+
+  const validateTitle = {
+    required: 'Title is required',
+  };
+
+  const validateBody = useMemo(() => {
+    return {
+      required: 'Content is required',
+      validate: (value) => value.trim() !== '' || 'Content cannot be empty',
+    };
+  }, []);
+
+  useEffect(() => {
+    register('body', validateBody);
+  }, [register, validateBody]);
+
   return (
-    <form className="bg-white w-full px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+    <form className="bg-white w-full px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(handleCreateThread)}>
       <p data-testid="error-alert" className="text-red-500 text-center">
         {errorCreateThread && errorCreateThread}
       </p>
@@ -25,11 +54,11 @@ function ThreadInput({ handleCreateThread }) {
         </label>
         <input
           className="border border-[#248277] rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-          value={category}
+          {...register('category', validateCategory)}
           type="text"
           placeholder="Kategori"
-          onChange={handleCategory}
         />
+        <p className="text-red-500 text-sm">{errors.category?.message}</p>
       </div>
       <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="title">
@@ -37,19 +66,20 @@ function ThreadInput({ handleCreateThread }) {
         </label>
         <input
           className="border border-[#248277] rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-          value={title}
+          {...register('title', validateTitle)}
           type="text"
           placeholder="Judul"
-          onChange={handleTitle}
         />
+        <p className="text-red-500 text-sm">{errors.title?.message}</p>
       </div>
       <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2">Konten</label>
         <div className="min-h-[100px] border border-[#248277] rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" contentEditable onInput={handleBody} />
+        <p className="text-red-500 text-sm">{errors.body?.message}</p>
       </div>
 
-      <button disabled={statusCreateThread === 'loading'} className="w-full flex items-center justify-center gap-2 bg-[#248277] text-white font-bold py-2 px-4 rounded-md " type="submit">
-        {statusCreateThread === 'loading' && <LoadingSpinner size="sm" />}
+      <button disabled={isSubmitting} className="w-full flex items-center justify-center gap-2 bg-[#248277] text-white font-bold py-2 px-4 rounded-md disabled:bg-[#154d46]" type="submit">
+        {isSubmitting && <LoadingSpinner size="sm" />}
         Kirim
       </button>
     </form>
@@ -57,7 +87,7 @@ function ThreadInput({ handleCreateThread }) {
 }
 
 ThreadInput.propTypes = {
-  handleCreateThread: PropTypes.func.isRequired,
+  onCreateThread: PropTypes.func.isRequired,
 };
 
 export default ThreadInput;

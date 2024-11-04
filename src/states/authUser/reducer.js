@@ -41,6 +41,11 @@ function authUserReducer(
         ...authUser,
         authUser: null,
       };
+    case ActionType.SET_AUTH_USER:
+      return {
+        ...authUser,
+        authUser: action.payload.authUser,
+      };
     default:
       return authUser;
   }

@@ -27,7 +27,7 @@ describe('RegisterInput component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <RegisterInput handleRegister={() => {}} />
+          <RegisterInput onRegister={() => {}} />
         </MemoryRouter>
       </Provider>
     );
@@ -45,7 +45,7 @@ describe('RegisterInput component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <RegisterInput handleRegister={() => {}} />
+          <RegisterInput onRegister={() => {}} />
         </MemoryRouter>
       </Provider>
     );
@@ -63,7 +63,7 @@ describe('RegisterInput component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <RegisterInput handleRegister={() => {}} />
+          <RegisterInput onRegister={() => {}} />
         </MemoryRouter>
       </Provider>
     );
@@ -82,7 +82,7 @@ describe('RegisterInput component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <RegisterInput handleRegister={mockRegister} />
+          <RegisterInput onRegister={mockRegister} />
         </MemoryRouter>
       </Provider>
     );

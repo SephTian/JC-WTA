@@ -1,22 +1,44 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { useInput } from '../../hooks/useInput';
 import LoadingSpinner from '../LoadingSpinner';
+import { useForm } from 'react-hook-form';
 
-function RegisterInput({ handleRegister }) {
-  const [name, handleName] = useInput('');
-  const [email, handleEmail] = useInput('');
-  const [password, handlePassword] = useInput('');
-  const { statusRegister, errorRegister } = useSelector((state) => state.authUser);
+function RegisterInput({ onRegister }) {
+  const { errorRegister } = useSelector((state) => state.authUser);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    handleRegister({ name, email, password });
+  const handleSubmitRegister = async (data) => {
+    const { name, email, password } = data;
+    await onRegister({ name, email, password });
+  };
+
+  const validateName = {
+    required: 'Name is required',
+  };
+
+  const validateEmail = {
+    required: 'Email is required',
+    pattern: {
+      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      message: 'Enter a valid email',
+    },
+  };
+
+  const validatePassword = {
+    required: 'Password is required',
+    minLength: {
+      value: 6,
+      message: 'Password must be at least 6 characters',
+    },
   };
 
   return (
-    <form className="bg-white w-full px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+    <form className="bg-white w-full px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(handleSubmitRegister)}>
       <p data-testid="error-alert" className="text-red-500 text-center">
         {errorRegister && errorRegister}
       </p>
@@ -25,40 +47,40 @@ function RegisterInput({ handleRegister }) {
           Name
         </label>
         <input
+          {...register('name', validateName)}
           className="border border-[#248277] rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-          value={name}
           type="text"
           placeholder="Name"
-          onChange={handleName}
         />
+        <p className="text-red-500 text-sm">{errors.name && errors.name.message}</p>
       </div>
       <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
           Email
         </label>
         <input
+          {...register('email', validateEmail)}
           className="border border-[#248277] rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-          value={email}
           type="email"
           placeholder="Email"
-          onChange={handleEmail}
         />
+        <p className="text-red-500 text-sm">{errors.email?.message}</p>
       </div>
       <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
           Password
         </label>
         <input
+          {...register('password', validatePassword)}
           className="border border-[#248277] rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-          value={password}
           type="password"
           placeholder="Password"
-          onChange={handlePassword}
         />
+        <p className="text-red-500 text-sm">{errors.password?.message}</p>
       </div>
       <div className="flex items-center justify-between">
-        <button disabled={statusRegister === 'loading'} className="flex items-center justify-center gap-2 bg-[#248277] text-white font-bold py-2 px-4 rounded-md " type="submit">
-          {statusRegister === 'loading' && <LoadingSpinner size="sm" />}
+        <button disabled={isSubmitting} className="flex items-center justify-center gap-2 bg-[#248277] text-white font-bold py-2 px-4 rounded-md disabled:bg-[#154e48]" type="submit">
+          {isSubmitting && <LoadingSpinner size="sm" />}
           Register
         </button>
         <h5>
@@ -73,7 +95,7 @@ function RegisterInput({ handleRegister }) {
 }
 
 RegisterInput.propTypes = {
-  handleRegister: PropTypes.func.isRequired,
+  onRegister: PropTypes.func.isRequired,
 };
 
 export default RegisterInput;

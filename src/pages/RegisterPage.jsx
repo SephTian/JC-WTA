@@ -11,8 +11,12 @@ function RegisterPage() {
   const { statusRegister } = useSelector((state) => state.authUser);
   const [isReset, setIsReset] = useState(false);
 
-  const handleRegister = ({ name, email, password }) => {
-    dispatch(asyncRegisterUser({ name, email, password }));
+  const handleRegister = async ({ name, email, password }) => {
+    /**
+     * disini sbeenarnya bisa pake unwrap(), cuma karena untuk tes kmaren disini dibikin
+     * manual thunk function nya yang membuat ga bisa pake unwrap()
+     * */
+    await dispatch(asyncRegisterUser({ name, email, password }));
   };
 
   useEffect(() => {
@@ -36,7 +40,7 @@ function RegisterPage() {
         </h2>
       </header>
       <article className="flex justify-center items-center w-full">
-        <RegisterInput handleRegister={handleRegister} />
+        <RegisterInput onRegister={handleRegister} />
       </article>
     </section>
   );

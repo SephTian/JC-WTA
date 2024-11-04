@@ -6,6 +6,7 @@ const ActionType = {
   LOGIN_USER: 'LOGIN_USER',
   SET_DEFAULT_REGISTER_STATUS: 'SET_DEFAULT_REGISTER_STATUS',
   REGISTER_USER: 'REGISTER_USER',
+  SET_AUTH_USER: 'SET_AUTH_USER',
   UNSET_AUTH_USER: 'UNSET_AUTH_USER',
 };
 
@@ -14,6 +15,15 @@ function unsetAuthUserActionCreator() {
     type: ActionType.UNSET_AUTH_USER,
     payload: {
       authUser: null,
+    },
+  };
+}
+
+function setAuthUserActionCreator({ authUser }) {
+  return {
+    type: ActionType.SET_AUTH_USER,
+    payload: {
+      authUser: authUser,
     },
   };
 }
@@ -65,6 +75,12 @@ function asyncUnsetAuthUser() {
   return (dispatch) => {
     dispatch(unsetAuthUserActionCreator());
     api.putToken('');
+  };
+}
+
+function asyncSetAuthUser({ authUser }) {
+  return (dispatch) => {
+    dispatch(setAuthUserActionCreator({ authUser }));
   };
 }
 
@@ -146,11 +162,13 @@ function asyncSetDefaultLoginStatus() {
 
 export {
   ActionType,
+  setAuthUserActionCreator,
   unsetAuthUserActionCreator,
   loginUserActionCreator,
   registerUserActionCreator,
   setDefaultLoginStatusActionCreator,
   setDefaultRegisterStatusActionCreator,
+  asyncSetAuthUser,
   asyncSetDefaultLoginStatus,
   asyncLoginUser,
   asyncUnsetAuthUser,

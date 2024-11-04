@@ -26,7 +26,7 @@ describe('LoginInput component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <LoginInput handleLogin={() => {}} />
+          <LoginInput onLogin={() => {}} />
         </MemoryRouter>
       </Provider>
     );
@@ -44,7 +44,7 @@ describe('LoginInput component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <LoginInput handleLogin={() => {}} />
+          <LoginInput onLogin={() => {}} />
         </MemoryRouter>
       </Provider>
     );
@@ -63,7 +63,7 @@ describe('LoginInput component', () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <LoginInput handleLogin={mockLogin} />
+          <LoginInput onLogin={mockLogin} />
         </MemoryRouter>
       </Provider>
     );
