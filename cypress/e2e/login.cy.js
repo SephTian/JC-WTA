@@ -25,7 +25,7 @@ describe('Login spec', () => {
       .contains(/^Login$/)
       .click();
 
-    cy.get('p[data-testid="error-alert"]').should('have.text', '"email" is not allowed to be empty').and('be.visible');
+    cy.get('p[data-testid="error-alert-email"]').should('have.text', '"email" is not allowed to be empty').and('be.visible');
   });
 
   it('should display alert when password is empty', () => {
@@ -35,7 +35,7 @@ describe('Login spec', () => {
       .contains(/^Login$/)
       .click();
 
-    cy.get('p[data-testid="error-alert"]').should('have.text', '"password" is not allowed to be empty').and('be.visible');
+    cy.get('p[data-testid="error-alert-password"]').should('have.text', '"password" is not allowed to be empty').and('be.visible');
   });
 
   it('should display alert when email and password are wrong', () => {

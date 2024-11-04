@@ -45,7 +45,9 @@ function LoginInput({ onLogin }) {
           type="email"
           placeholder="Email"
         />
-        <p className="text-red-500 text-sm">{errors.email?.message}</p>
+        <p data-testid="error-alert-email" className="text-red-500 text-sm">
+          {errors.email?.message}
+        </p>
       </div>
       <div className="mb-6">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
@@ -57,7 +59,9 @@ function LoginInput({ onLogin }) {
           type="password"
           placeholder="Password"
         />
-        <p className="text-red-500 text-sm">{errors.password?.message}</p>
+        <p data-testid="error-alert-password" className="text-red-500 text-sm">
+          {errors.password?.message}
+        </p>
       </div>
       <div className="flex items-center justify-between">
         <button disabled={isSubmitting} className="flex items-center justify-center gap-2 bg-[#248277] text-white font-bold py-2 px-4 rounded-md disabled:bg-[#154e48]" type="submit">
