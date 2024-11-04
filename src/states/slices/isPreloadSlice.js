@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import api from '../../data/api';
-import { setAuthUser } from './authUserSlice';
 import { hideLoading, showLoading } from 'react-redux-loading-bar';
+import { asyncSetAuthUser } from '../authUser/action';
 
 const initialState = true;
 
@@ -24,7 +24,7 @@ const asyncPreloadProcess = createAsyncThunk('isPreload/asyncPreloadProcess', as
   thunkAPI.dispatch(showLoading());
   try {
     const user = await api.getOwnProfile();
-    thunkAPI.dispatch(setAuthUser({ user }));
+    thunkAPI.dispatch(asyncSetAuthUser({ authUser: user }));
 
     return false;
   } catch (error) {
