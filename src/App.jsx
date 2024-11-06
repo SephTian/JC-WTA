@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, Route, Routes } from 'react-router-dom';
+import { Outlet, Route, Routes, Navigate } from 'react-router-dom';
 import { asyncPreloadProcess } from './states/slices/isPreloadSlice';
 import Navbar from './components/Navbar';
 import BottomNavbar from './components/BottomNavbar';
@@ -28,7 +28,7 @@ function Layout() {
 
 function App() {
   const isPreload = useSelector((state) => state.isPreload);
-  //const { userId } = useSelector((state) => state.authUser);
+  const { authUser } = useSelector((state) => state.authUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -47,8 +47,8 @@ function App() {
           <Route path="/threads/new" element={<AddThreadPage />} />
           <Route path="/threads/:threadId" element={<DetailThreadPage />} />
           <Route path="/leaderboards" element={<LeaderboardPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={authUser ? <Navigate to="/" /> : <LoginPage />} />
+          <Route path="/register" element={authUser ? <Navigate to="/" /> : <RegisterPage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
