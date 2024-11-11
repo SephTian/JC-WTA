@@ -20,7 +20,7 @@ function getLeaderboardsActionCreator({ leaderboards, status, error }) {
 function asyncGetLeaderboards() {
   return async (dispatch) => {
     dispatch(showLoading());
-    dispatch(getLeaderboardsActionCreator({ leaderboards: [], status: 'idle', error: null }));
+    dispatch(getLeaderboardsActionCreator({ leaderboards: [], status: 'loading', error: null }));
 
     try {
       const leaderboards = await api.getLeaderboards();
