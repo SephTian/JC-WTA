@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncLoginUser, asyncSetDefaultLoginStatus } from '../states/authUser/action';
 import { FaEarthAsia } from 'react-icons/fa6';
-import LoginInput from '../components/auth/LoginInput';
+import LoginInput from '../components/forms/LoginInput';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 

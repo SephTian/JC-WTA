@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncRegisterUser, asyncSetDefaultRegisterStatus } from '../states/authUser/action';
-import RegisterInput from '../components/auth/RegisterInput';
+import RegisterInput from '../components/forms/RegisterInput';
 import { FaEarthAsia } from 'react-icons/fa6';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncGetAllThreads, asyncToggleVoteThread } from '../states/slices/threadsSlice';
-import LoadingThreadItem from '../components/thread/LoadingThreadItem';
-import ThreadsList from '../components/thread/ThreadsList';
-import ThreadFilter from '../components/thread/ThreadFilter';
+import LoadingThreadItem from '../components/UI/thread/LoadingThreadItem';
+import ThreadsList from '../components/UI/thread/ThreadsList';
 import { Link, useSearchParams } from 'react-router-dom';
-import ThreadsSearchInput from '../components/thread/ThreadSearchInput';
+import ThreadsSearchInput from '../components/UI/thread/ThreadSearchInput';
+import CategoriesList from '../components/UI/category/CategoriesList';
 import { BsClipboardPlusFill } from 'react-icons/bs';
 
 function ThreadPage() {
@@ -47,7 +47,7 @@ function ThreadPage() {
     <section className="w-full max-w-[800px] bg-white p-8">
       <header>
         <h4 className="mb-2 text-gray-600">Kategori popular</h4>
-        <ThreadFilter categories={ThreadCategories} currentCategory={category} handleSetCategory={handleSetCategory} />
+        <CategoriesList categories={ThreadCategories} currentCategory={category} handleSetCategory={handleSetCategory} />
         <div className="mt-3">
           <ThreadsSearchInput keyword={keyword} onChange={handleSearchKeyword} />
         </div>

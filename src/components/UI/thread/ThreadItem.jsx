@@ -4,10 +4,10 @@ import { useMemo } from 'react';
 import parse from 'html-react-parser';
 import PropTypes from 'prop-types';
 import { BsReply } from 'react-icons/bs';
-import CategoryBox from './CategoryBox';
+import CategoryBox from '../category/CategoryBox';
 import VoteInput from './VoteInput';
 
-import { showFormattedTimeCount } from '../../utils';
+import { showFormattedTimeCount } from '../../../utils';
 
 function ThreadItem({ id, title, body, category, createdAt, ownerId, upVotesBy, downVotesBy, totalComments, handleToggleVote }) {
   const { users } = useSelector((state) => state.users);
