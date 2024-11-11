@@ -18,7 +18,7 @@ const showFormattedTimeCount = (date) => {
 
   const timeDifferenceInSecond = Math.floor((now.getTime() - inputDate.getTime()) / SECOND);
   if (timeDifferenceInSecond <= 60) {
-    return `${Math.floor(timeDifferenceInSecond)} detik`;
+    return `${Math.floor(timeDifferenceInSecond) + 1} detik`;
   } else if (timeDifferenceInSecond <= HOUR) {
     return `${Math.floor(timeDifferenceInSecond / MINUTE)} menit`;
   } else if (timeDifferenceInSecond <= DAY) {
