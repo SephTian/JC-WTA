@@ -26,7 +26,7 @@ function AddThreadPage() {
       <header className="flex flex-col justify-center items-center gap-3">
         <FaEarthAsia className="text-[#248277]" size={90} />
         <h2 className="text-4xl text-center">
-          Tambah Diskusi Di Bawah Ini <br />
+          Mari Berkontribusi Di <br />
           Setiap Sudut <strong>Dunia.</strong>
         </h2>
       </header>
