@@ -64,7 +64,7 @@ function ThreadPage() {
       </article>
 
       {authUser && (
-        <Link className="absolute bottom-20 right-10 bg-white border border-[#248277] rounded-md py-3 px-3 text-[#248277] font-bold flex gap-2 items-center" to="/threads/new">
+        <Link className="z-50 fixed bottom-20 right-10 bg-white border border-[#248277] rounded-md py-3 px-3 text-[#248277] font-bold flex gap-2 items-center" to="/threads/new">
           <BsClipboardPlusFill size={24} />
         </Link>
       )}
