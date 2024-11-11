@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function ThreadFilter({ categories, currentCategory, handleSetCategory }) {
+function CategoriesList({ categories, currentCategory, handleSetCategory }) {
   const onClickCategory = (category) => {
     if (currentCategory === category) {
       handleSetCategory('');
@@ -27,10 +27,10 @@ function ThreadFilter({ categories, currentCategory, handleSetCategory }) {
   );
 }
 
-ThreadFilter.propTypes = {
+CategoriesList.propTypes = {
   categories: PropTypes.array.isRequired,
   currentCategory: PropTypes.string.isRequired,
   handleSetCategory: PropTypes.func.isRequired,
 };
 
-export default ThreadFilter;
+export default CategoriesList;

@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { asyncCreateThread } from '../states/slices/threadsSlice';
 import { useNavigate } from 'react-router-dom';
-import ThreadInput from '../components/thread/ThreadInput';
+import ThreadInput from '../components/forms/ThreadInput';
 import { FaEarthAsia } from 'react-icons/fa6';
 
 function AddThreadPage() {

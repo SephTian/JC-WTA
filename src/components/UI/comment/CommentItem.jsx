@@ -2,7 +2,7 @@ import parse from 'html-react-parser';
 import PropTypes from 'prop-types';
 import VoteInput from '../thread/VoteInput';
 
-import { showFormattedTimeCount } from '../../utils';
+import { showFormattedTimeCount } from '../../../utils';
 
 function CommentItem({ id, content, createdAt, owner, upVotesBy, downVotesBy, handleToggleVoteComment }) {
   return (

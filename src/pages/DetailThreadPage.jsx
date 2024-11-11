@@ -4,12 +4,12 @@ import { asyncGetDetailThread, asyncToggleVoteComment } from '../states/slices/d
 import { useParams } from 'react-router-dom';
 import { asyncToggleVoteDetailThread, asyncCreateComment } from '../states/slices/detailThreadSlice';
 import parse from 'html-react-parser';
-import CategoryBox from '../components/thread/CategoryBox';
-import VoteInput from '../components/thread/VoteInput';
-import CommentInput from '../components/threadComment/CommentInput';
+import CategoryBox from '../components/UI/category/CategoryBox';
+import VoteInput from '../components/UI/thread/VoteInput';
+import CommentInput from '../components/forms/CommentInput';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 import { showFormattedTimeCount } from '../utils';
-import CommentsList from '../components/threadComment/CommentsList';
+import CommentsList from '../components/UI/comment/CommentsList';
 
 function DetailThreadPage() {
   const dispatch = useDispatch();
