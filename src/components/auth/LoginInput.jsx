@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import LoadingSpinner from '../LoadingSpinner';
+import LoadingSpinner from '../UI/LoadingSpinner';
 import { useForm } from 'react-hook-form';
 
 function LoginInput({ onLogin }) {
@@ -31,9 +31,11 @@ function LoginInput({ onLogin }) {
 
   return (
     <form className="bg-white w-full  px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit(handleLogin)}>
-      <p data-testid="error-alert" className="text-red-500 text-center">
-        {errorLogin && errorLogin}
-      </p>
+      {errorLogin && (
+        <p data-testid="error-alert" className="text-white bg-red-400 text-center rounded-sm py-2 my-2">
+          {errorLogin}
+        </p>
+      )}
 
       <div className="mb-4">
         <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">

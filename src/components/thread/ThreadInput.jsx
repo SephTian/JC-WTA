@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 //import { useInput } from '../../hooks/useInput';
-import LoadingSpinner from '../LoadingSpinner';
+import LoadingSpinner from '../UI/LoadingSpinner';
 import { useForm } from 'react-hook-form';
 import { useEffect, useMemo } from 'react';
 

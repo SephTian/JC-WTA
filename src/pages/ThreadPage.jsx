@@ -4,37 +4,53 @@ import { asyncGetAllThreads, asyncToggleVoteThread } from '../states/slices/thre
 import LoadingThreadItem from '../components/thread/LoadingThreadItem';
 import ThreadsList from '../components/thread/ThreadsList';
 import ThreadFilter from '../components/thread/ThreadFilter';
+import { Link, useSearchParams } from 'react-router-dom';
+import ThreadsSearchInput from '../components/thread/ThreadSearchInput';
+import { BsClipboardPlusFill } from 'react-icons/bs';
 
 function ThreadPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { authUser } = useSelector((state) => state.authUser);
   const { threads, status, threadError } = useSelector((state) => state.threads);
-  const [category, setCategory] = useState('');
-
+  const [category, setCategory] = useState(() => searchParams.get('category') || '');
+  const [keyword, setKeyword] = useState(() => searchParams.get('keyword') || '');
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(asyncGetAllThreads());
   }, [dispatch]);
 
   const handleSetCategory = (newCategory) => {
     setCategory(newCategory);
+    setSearchParams({ category: newCategory, keyword: keyword });
+  };
+
+  const handleSearchKeyword = ({ target }) => {
+    setSearchParams({ category: category, keyword: target.value });
+    setKeyword(target.value);
   };
 
   const handleToggleVote = ({ userId, targetId, type }) => {
     dispatch(asyncToggleVoteThread({ userId, threadId: targetId, type }));
   };
-
-  const filteredThreads = threads.filter((thread) => thread.category.toLowerCase().includes(category.toLowerCase()));
-  const filteredThreadCategories = threads.reduce((categories, thread) => {
+  const ThreadCategories = threads?.reduce((categories, thread) => {
     if (!categories.includes(thread.category)) {
       categories.push(thread.category);
     }
     return categories;
   }, []);
+  const filteredThreads = threads?.filter((thread) => {
+    return thread.category.toLowerCase().includes(category.toLowerCase()) && thread.title.toLowerCase().includes(keyword.toLowerCase());
+  });
 
   return (
     <section className="w-full max-w-[800px] bg-white p-8">
       <header>
         <h4 className="mb-2 text-gray-600">Kategori popular</h4>
-        <ThreadFilter categories={filteredThreadCategories} currentCategory={category} handleSetCategory={handleSetCategory} />
+        <ThreadFilter categories={ThreadCategories} currentCategory={category} handleSetCategory={handleSetCategory} />
+        <div className="mt-3">
+          <ThreadsSearchInput keyword={keyword} onChange={handleSearchKeyword} />
+        </div>
       </header>
       <article>
         <h1 className="font-semibold text-3xl text-blue-950 my-5">Diskusi Tersedia</h1>
@@ -46,6 +62,12 @@ function ThreadPage() {
           </div>
         )}
       </article>
+
+      {authUser && (
+        <Link className="absolute bottom-20 right-10 bg-white border border-[#248277] rounded-md py-3 px-3 text-[#248277] font-bold flex gap-2 items-center" to="/threads/new">
+          <BsClipboardPlusFill size={24} />
+        </Link>
+      )}
     </section>
   );
 }

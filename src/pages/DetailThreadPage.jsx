@@ -7,7 +7,7 @@ import parse from 'html-react-parser';
 import CategoryBox from '../components/thread/CategoryBox';
 import VoteInput from '../components/thread/VoteInput';
 import CommentInput from '../components/threadComment/CommentInput';
-import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingSpinner from '../components/UI/LoadingSpinner';
 import { showFormattedTimeCount } from '../utils';
 import CommentsList from '../components/threadComment/CommentsList';
 

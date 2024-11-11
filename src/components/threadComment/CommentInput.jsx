@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import LoadingSpinner from '../LoadingSpinner';
+import LoadingSpinner from '../UI/LoadingSpinner';
 import { useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -56,12 +56,12 @@ function CommentInput({ onAddComment }) {
     <form className="my-4 space-y-3" onSubmit={handleSubmit(handleSubmitComment)}>
       <h1 className="text-xl font-medium text-blue-900">Beri Komentar</h1>
       <div ref={contentRef} role="commentContent" contentEditable className="my-4 p-3 bg-gray-50 border-2 border-[#248277] rounded-md min-h-[100px]" onInput={handleCommentChange} />
+      {errorAddComment && <p className="text-red-500 text-sm">{errorAddComment}</p>}
+      {errors.content && <p className="text-red-500 text-sm">{errors.content.message}</p>}
       <button disabled={isSubmitting} className="flex items-center justify-center gap-2 bg-[#248277] text-white w-full rounded-md py-2 disabled:bg-[#17554e]" type="submit">
         {isSubmitting && <LoadingSpinner size="sm" />}
         Kirim
       </button>
-      {errorAddComment && <p className="text-red-500 text-sm">{errorAddComment}</p>}
-      {errors.content && <p className="text-red-500 text-sm">{errors.content.message}</p>}
     </form>
   );
 }

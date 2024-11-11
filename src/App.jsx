@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Outlet, Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { asyncPreloadProcess } from './states/slices/isPreloadSlice';
-import Navbar from './components/Navbar';
-import BottomNavbar from './components/BottomNavbar';
 import ThreadPage from './pages/ThreadPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -11,20 +9,7 @@ import DetailThreadPage from './pages/DetailThreadPage';
 import AddThreadPage from './pages/AddThreadPage';
 import NotFoundPage from './pages/NotFoundPage';
 import LeaderboardPage from './pages/LeaderboardPage';
-
-function Layout() {
-  return (
-    <>
-      <Navbar />
-      <main className="w-full flex justify-center min-h-screen py-12">
-        <Outlet />
-      </main>
-      <footer>
-        <BottomNavbar />
-      </footer>
-    </>
-  );
-}
+import Layout from './components/layouts/Layout';
 
 function App() {
   const isPreload = useSelector((state) => state.isPreload);

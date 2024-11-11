@@ -20,6 +20,7 @@ function VoteInput({ targetId, upVotesBy, downVotesBy, handleToggleVote }) {
 
     return 'neutral';
   };
+
   const onClickVote = (type) => {
     if (!authUser) {
       alert('login dulu');
@@ -27,7 +28,6 @@ function VoteInput({ targetId, upVotesBy, downVotesBy, handleToggleVote }) {
     }
 
     const voteType = currentVote === type ? 'neutral' : type;
-
     handleToggleVote({ userId: authUser.id, targetId, type: voteType });
   };
   const currentVote = checkCurrentVote();

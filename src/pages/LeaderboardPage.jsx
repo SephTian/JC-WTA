@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import LeaderboardsList from '../components/leaderboard/LeaderboardsList';
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncGetLeaderboards } from '../states/leaderboards/action';
-import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingSpinner from '../components/UI/LoadingSpinner';
 
 function LeaderboardPage() {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ function LeaderboardPage() {
   useEffect(() => {
     dispatch(asyncGetLeaderboards());
   }, [dispatch]);
-
+  console.log(status);
   return (
     <section className="w-full max-w-[800px] bg-white p-8">
       <header>
